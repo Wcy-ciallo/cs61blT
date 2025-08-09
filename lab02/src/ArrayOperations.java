@@ -10,6 +10,10 @@ public class ArrayOperations {
             return;
         }
         // TODO: fill out this function
+        for(int i = pos; i < values.length - 1; i++) {
+            values[i] = values[i + 1];
+        }
+        values[values.length - 1] = 0;
     }
 
     /**
@@ -22,6 +26,10 @@ public class ArrayOperations {
             return;
         }
         // TODO: fill out this function
+        for(int i = values.length - 1; i > pos; i--) {
+            values[i] = values[i - 1];
+        }
+        values[pos] = newInt;
     }
 
     /** 
@@ -30,7 +38,22 @@ public class ArrayOperations {
      */
     public static int[] catenate(int[] A, int[] B) {
         // TODO: fill out this function
-        return null;
+        int[] res = new int[A.length + B.length];
+        for(int i = 0; i < A.length; i++) {
+            res[i] = A[i];
+        }
+        for(int i = 0; i < B.length; i++) {
+            res[A.length + i] = B[i];
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int[] values = new int[] {1, 2, 3, 4, 5};
+        insert(values, 0, 0);
+        for(int i = 0; i < values.length; i++) {
+            System.out.print(values[i] + " ");
+        }
     }
 
 }
