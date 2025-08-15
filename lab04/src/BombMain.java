@@ -10,13 +10,17 @@ public class BombMain {
         //              take you to the method definition.
         Bomb b = new Bomb();
         if (phase >= 0) {
-            b.phase0(null); // Figure this out. I wonder where the phases are defined...
+            b.phase0("39291226"); // Figure this out. I wonder where the phases are defined...
         }
         if (phase >= 1) {
-            b.phase1(null); // Figure this out next
+            b.phase1(new int[] {0, 9, 3, 0, 8}); // Figure this out next
         }
         if (phase >= 2) {
-            b.phase2("Figure this out last!");
+            String password = "1";
+            for(int i = 1; i <= 10000; i++) {
+                password += " -81201430";
+            }
+            b.phase2(password);
         }
     }
 }

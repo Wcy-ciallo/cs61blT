@@ -48,7 +48,18 @@ public class IntList {
      */
     public int get(int position) {
         // TODO: YOUR CODE HERE
-        return -1;
+        if(position < 0) {
+            throw new IllegalArgumentException("YOUR MESSAGE HERE");
+        }
+
+        IntList res = this;
+        for(int i = 0; i < position; i++) {
+            if(res.next == null) {
+                throw new IllegalArgumentException("YOUR MESSAGE HERE");
+            }
+            res = res.next;
+        }
+        return res.item;
     }
 
     /**
@@ -59,7 +70,13 @@ public class IntList {
      */
     public String toString() {
         // TODO: YOUR CODE HERE
-        return null;
+        String res = Integer.toString(item);
+        IntList il = this;
+        while(il.next != null) {
+            il = il.next;
+            res += " " + Integer.toString(il.item);
+        }
+        return res;
     }
 
     /**
@@ -82,7 +99,21 @@ public class IntList {
         }
         if (obj instanceof IntList otherList) {
             // TODO: your code here
-
+            IntList t = this;
+            while(t.next != null) {
+                if(otherList.next == null) {
+                    return false;
+                }
+                if(t.item != otherList.item) {
+                    return false;
+                }
+                t = t.next;
+                otherList = otherList.next;
+            }
+            if(otherList.next != null || otherList.item != t.item) {
+                return false;
+            }
+            return true;
         }
         return false;
     }
@@ -94,6 +125,11 @@ public class IntList {
      */
     public void add(int value) {
         // TODO: YOUR CODE HERE
+        IntList t = this;
+        while(t.next != null) {
+            t = t.next;
+        }
+        t.next = new IntList(value);
     }
 
     /**
@@ -103,7 +139,13 @@ public class IntList {
      */
     public int smallest() {
         // TODO: YOUR CODE HERE
-        return -1;
+        int res = this.item;
+        IntList t = this;
+        while(t != null) {
+            res = res < t.item ? res : t.item;
+            t = t.next;
+        }
+        return res;
     }
 
     /**
@@ -113,7 +155,13 @@ public class IntList {
      */
     public int squaredSum() {
         // TODO: YOUR CODE HERE
-        return -1;
+        int sum = 0;
+        IntList t = this;
+        while(t != null) {
+            sum += t.item * t.item;
+            t = t.next;
+        }
+        return sum;
     }
 
     /**
@@ -171,7 +219,17 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         // TODO: YOUR CODE HERE
-        return null;
+        IntList res = new IntList(A.item);
+        A = A.next;
+        while(A != null) {
+            res.add(A.item);
+            A = A.next;
+        }
+        while(B != null) {
+            res.add(B.item);
+            B = B.next;
+        }
+        return res;
     }
 
     /**
@@ -184,6 +242,15 @@ public class IntList {
      */
     public static IntList dcatenate(IntList A, IntList B) {
         // TODO: YOUR CODE HERE
-        return null;
+        IntList AA = A;
+        while(AA.next != null) {
+            AA = AA.next;
+        }
+        while(B != null) {
+            AA.add(B.item);
+            B = B.next;
+            AA = AA.next;
+        }
+        return A;
     }
 }
