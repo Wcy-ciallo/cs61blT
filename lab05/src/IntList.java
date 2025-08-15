@@ -219,6 +219,9 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         // TODO: YOUR CODE HERE
+        if(A == null) {
+            return B;
+        }
         IntList res = new IntList(A.item);
         A = A.next;
         while(A != null) {
@@ -242,15 +245,14 @@ public class IntList {
      */
     public static IntList dcatenate(IntList A, IntList B) {
         // TODO: YOUR CODE HERE
+        if(A == null) {
+            return B;
+        }
         IntList AA = A;
         while(AA.next != null) {
             AA = AA.next;
         }
-        while(B != null) {
-            AA.add(B.item);
-            B = B.next;
-            AA = AA.next;
-        }
+        AA.next = B;
         return A;
     }
 }
