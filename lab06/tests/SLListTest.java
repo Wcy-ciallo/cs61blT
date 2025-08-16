@@ -27,5 +27,25 @@ public class SLListTest {
     @Test
     public void testSLListReverse() {
         // TODO: Add tests
+
+        // 空链表测试
+        SLList emptyList = new SLList();
+        emptyList.reverse();
+        assertWithMessage("Reversing an empty list should still be empty").that(emptyList.equals(new SLList())).isTrue();
+
+        // 单元素链表测试
+        SLList singleElementList = SLList.of(1);
+        singleElementList.reverse();
+        assertWithMessage("Reversing a single-element list should not change it").that(singleElementList.equals(SLList.of(1))).isTrue();
+
+        // 多元素链表测试
+        SLList multiElementList = SLList.of(1, 2, 3, 4, 5);
+        multiElementList.reverse();
+        assertWithMessage("Reversing a multi-element list failed").that(multiElementList.equals(SLList.of(5, 4, 3, 2, 1))).isTrue();
+
+        // 重复元素测试
+        SLList duplicateElementList = SLList.of(1, 2, 2, 1);
+        duplicateElementList.reverse();
+        assertWithMessage("Reversing a list with duplicate elements failed").that(duplicateElementList.equals(SLList.of(1, 2, 2, 1))).isTrue();
     }
 }
